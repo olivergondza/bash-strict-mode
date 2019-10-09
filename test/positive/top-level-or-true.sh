@@ -1,0 +1,2 @@
+false || true
+echo "continued"
