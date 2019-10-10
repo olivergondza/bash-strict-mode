@@ -1,1 +1,2 @@
-script ./test/run.sh
+language: minimal
+script: "./test/run.sh"
