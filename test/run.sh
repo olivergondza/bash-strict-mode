@@ -15,7 +15,7 @@ goreutils="$CACHE/goreutils"
 if [ ! -d "$goreutils" ]; then
     git clone https://github.com/olivergondza/goreutils.git "$goreutils" > /dev/null
 fi
-export PATH="$PATH:$goreutils/bin/assert"
+export PATH="$PATH:$goreutils/bin"
 
 function snip() {
     mkdir -p "$TMP/snip/positive" "$TMP/snip/negative"
