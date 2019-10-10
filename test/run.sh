@@ -31,7 +31,7 @@ assert --running "$(snip 'negative/top-level-fail')" --exit-with 1 --no-out --er
 assert --running "$(snip 'negative/top-level-pipefail')" --exit-with 1 --out-equals $'executed anyway\n' --err-matches 'Error on line .: echo '
 
 assert --running "$(snip 'negative/function-undefined')" --exit-with 1 --no-out --err-matches 'NO_SUCH_VAR: unbound variable'
-# TODO set -e
+# TODO set -E
 # assert --running "$(snip 'negative/function-fail')" --exit-with 1 --no-out --err-matches 'Error on line .: false'
 # TODO set -o errtrace
 # assert --running "$(snip 'negative/function-pipefail')" --exit-with 1 --out-equals $'executed anyway\n' --err-matches 'Error on line ..: echo '
