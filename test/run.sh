@@ -54,3 +54,4 @@ assert --running "$(snip 'negative/comsub-pipefail')" --exit-with 1 --no-out --e
 
 assert --running "$(snip "positive/top-level-or-true")" --succeeds --out-equals $'continued\n'
 assert --running "$(snip "positive/top-level-default-undeclared")" --succeeds --out-equals $'continued\n'
+assert --running "$(snip "positive/associative-array-key-exists")" --succeeds --out-equals $'continued\n'
