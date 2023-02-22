@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # https://github.com/olivergondza/bash-strict-mode
-set -euo pipefail
+set -eEuo pipefail
 trap 's=$?; echo >&2 "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
