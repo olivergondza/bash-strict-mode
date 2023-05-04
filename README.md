@@ -5,17 +5,26 @@ and [Michael Daffin](https://disconnected.systems/blog/another-bash-strict-mode/
 
 The evolution and some of the rationale can be seen in an introductory [blog post](https://olivergondza.github.io/2019/10/01/bash-strict-mode.html).
 
-# Overcoming common difficulties
+## Usage
+[The preamble](https://github.com/olivergondza/bash-strict-mode/blob/master/strict-mode.sh) needs to be placed at the top of every executable bash script.
+There is one exception: sourced library files.
+It is not needed there provided those only contain functions for other script, and are never executed directly.
+
+It is recommended not to change the preamble manually.
+Keeping it as it is makes it easier to locate the scripts declaring bash strict mode, and simplified mass updates to a new version of the strict mode.
+If there are changes to do per individual script, declare them after the strict mode preamble.
+
+## Overcoming common difficulties
 
 Frequently used bash code is sometimes unusable when bash strict mode is used.
 This might be surprising or even annoying to newcomers.
 Rather than avoiding or turning of the strict mode, here are the examples of correct bash code working in strict mode.
 
-## Commands that are expected to fail (sometimes)
+### Commands that are expected to fail (sometimes)
 
 For such anticipated failures, stopping the script is not desirable.
 
-### `or-true`
+#### `or-true`
 
 Tolerating the eventual failures is ok in cases it is known the non-zero status does not indicate real problem:
 ```bash
@@ -26,7 +35,7 @@ It is a good practice to document why it desirable to tolerate command failures.
 
 ---
 
-### `if-command`
+#### `if-command`
 
 To capture the error code for further processing (diagnostics, recovery, etc.), wrap the offending commend in `if`:
 ```bash
@@ -48,7 +57,7 @@ There are several downsides:
   Otherwise, consult `or-block` pattern.
 ---
 
-### `or-block`
+#### `or-block`
 
 To provide handling for command failure only:
 
