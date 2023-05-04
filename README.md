@@ -19,9 +19,11 @@ For such anticipated failures, stopping the script is not desirable.
 
 Tolerating the eventual failures is ok in cases it is known the non-zero status does not indicate real problem:
 ```bash
-# grep can fail if output contains no ERROR
+# grep can fail if output contains no error
 grep "Error:" ./out.log || true
 ```
+It is a good practice to document why it desirable to tolerate command failures.
+
 ---
 
 ### `if-command`
@@ -38,16 +40,17 @@ fi
 There are several downsides:
 - The value of `$?` needs to be captured early in the block, before it get overwritten by other statements.
 - Complicated or long commands will become even harder to understand when run as `if` conditionals.
-  To avoid that, wrap them in descriptively named function - it will make the code self-documenting as well.
+  To avoid that, wrap the command in a descriptively named function - it will make the code self-documenting as well.
 - Reversing the conditional (`if ! command ...`) will also reverse the exit code.
-  That will effectively turn the meaningful exit code into `0` throwing away any value it had.
-  This is tempting to use in case there is no meaningful action in case of command success.
-  Though leaving one of the `if/else` branches empty is far from idiomatic.
+  That will effectively turn the exit code into `0` throwing away meaningful information.
+  Using the `!` is tempting when there is no meaningful action to do in case of command success, when the `if` branche would be efectively empty.
+  It might be adequate in case the command's exit code is not needed.
+  Otherwise, consult `or-block` pattern.
 ---
 
 ### `or-block`
 
-For handling only the negative command outcome, this can be more practical:
+To provide handling for command failure only:
 
 ```bash
 potentialy-failing-command || {
@@ -58,4 +61,4 @@ potentialy-failing-command || {
 There are several downsides:
 - The value of `$?` needs to be captured early in the block, before it get overwritten by other statements.
 - Complicated or long commands can obscure the `||` at the end, making it hard to understand the program flow.
-  To avoid that, wrap them in descriptively named function - it will make the code self-documenting as well.
+  To avoid that, wrap the command in a descriptively named function - it will make the code self-documenting as well.
