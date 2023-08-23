@@ -18,7 +18,7 @@ If there are changes to do per individual script, declare them after the strict 
 
 Frequently used bash code is sometimes unusable when bash strict mode is used.
 This might be surprising or even annoying to newcomers.
-Rather than avoiding or turning of the strict mode, here are the examples of correct bash code working in strict mode.
+Rather than avoiding or turning off the strict mode, here are the examples of correct bash code working in strict mode.
 
 ### Commands that are expected to fail (sometimes)
 
@@ -31,7 +31,7 @@ Tolerating the eventual failures is ok in cases it is known the non-zero status 
 # grep can fail if output contains no error
 grep "Error:" ./out.log || true
 ```
-It is a good practice to document why it desirable to tolerate command failures.
+It is a good practice to document _why_ it is desirable to tolerate command failures, and _when_ they can occur.
 
 ---
 
